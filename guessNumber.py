@@ -11,11 +11,11 @@ from PyQt5.QtGui  import QFont
 
 class GuessNumberGui(QWidget): 
 	""" Guessing Game with  PyQt5  """  
-	def __init__(self) : 
+	def __init__(self): 
 		super().__init__()
 		self.intializeUI() 
 
-	def intializeUI(self) : 
+	def intializeUI(self): 
 		self.setWindowTitle(" Guessing game Number ")
 		self.tentative_number = 0
 		self.live_number  = 9
@@ -30,8 +30,7 @@ class GuessNumberGui(QWidget):
 
 		self.show()
 
-	def setWidget(self) : 
-
+	def setWidget(self): 
 		# Set and custumize Title for Gui 
 		title_lbl = QLabel("Guessing Game")
 		font = QFont('Times',20)
@@ -109,7 +108,7 @@ class GuessNumberGui(QWidget):
 		self.vie_nbr_lbl.setText(" ".join(str(x) for x in self.niveau_vie))
 		self.list_tentative.clear()
 		
-	def exit(self) : 
+	def exit(self): 
 		self.gues_btn.setEnabled(False)
 		self.txt_to_user_lbl.setText(" Click on Play to start a new game ")
 		self.hint_lbl.clear()
@@ -119,35 +118,34 @@ class GuessNumberGui(QWidget):
 		self.list_tentative.clear()
 
 	def guess(self): 
-
 		self.niveau_vie.remove("*")
 		self.vie_nbr_lbl.setText("Nombre de vies restantes : "+" ".join(str(x) for x in self.niveau_vie))
 		listWidgetItem = QListWidgetItem(" ")
 
-		if len(self.niveau_vie) >= 0 :
+		if len(self.niveau_vie) >= 0:
 			self.play_btn.setEnabled(False)
-			try : 
+			try: 
 				choice  = int(self.input_liedit.text())			
 				if self.target != choice : 
-					self.txt_to_user_lbl.setText(" Wrong Guess ! Try Again ")
+					self.txt_to_user_lbl.setText(" Wrong Guess ! Try Again")
 					self.tentative_number += 1
 					self.input_liedit.clear()
 
-					if self.target > choice :
-						self.hint_lbl.setText(" C'est plus  ! ") 
+					if self.target > choice:
+						self.hint_lbl.setText(" C'est plus !") 
 						self.list_tentative.addItem(f"c'est plus grand que :{choice}")
-					else : 
-						self.hint_lbl.setText(" C'est moins ! ")
+					else: 
+						self.hint_lbl.setText(" C'est moins !")
 						self.list_tentative.addItem(f"c'est plus petit que :{choice}")
-				else :
-					self.txt_to_user_lbl.setText(f"Bravo !! ")
-					self.hint_lbl.setText(f"Vous avez trouvé en {self.tentative_number} tentatives ")
+				else:
+					self.txt_to_user_lbl.setText(f"Bravo !!")
+					self.hint_lbl.setText(f"Vous avez trouvé en {self.tentative_number} tentatives")
 					self.play_btn.setText("Play again")
 					self.play_btn.setEnabled(True)
 
-			except ValueError : 
+			except ValueError: 
 				self.txt_to_user_lbl.setText(" Your value is not a number  ")
-		else : 
+		else: 
 			self.txt_to_user_lbl.setText("Dommage vous avez perdu !  ")
 			self.hint_lbl.setText(f"Le nombre à deviner était :{self.target}") 
 
