@@ -18,7 +18,7 @@ class GuessNumberGui(QWidget):
 	def intializeUI(self) : 
 		self.setWindowTitle(" Guessing game Number ")
 		self.tentative_number = 0
-		self.live_number  = 10
+		self.live_number  = 9
 		self.max = 1000
 		self.niveau_vie   = []
 		win_xposition = 100
@@ -107,6 +107,7 @@ class GuessNumberGui(QWidget):
 		self.target = random.randint(1, self.max)
 		self.niveau_vie = ["*"]*self.live_number
 		self.vie_nbr_lbl.setText(" ".join(str(x) for x in self.niveau_vie))
+		self.list_tentative.clear()
 		
 	def exit(self) : 
 		self.gues_btn.setEnabled(False)
@@ -115,6 +116,7 @@ class GuessNumberGui(QWidget):
 		self.input_liedit.clear()
 		self.tentative_number = 0
 		self.play_btn.setEnabled(True)
+		self.list_tentative.clear()
 
 	def guess(self): 
 
@@ -140,6 +142,9 @@ class GuessNumberGui(QWidget):
 				else :
 					self.txt_to_user_lbl.setText(f"Bravo !! ")
 					self.hint_lbl.setText(f"Vous avez trouvé en {self.tentative_number} tentatives ")
+					self.play_btn.setText("Play again")
+					self.play_btn.setEnabled(True)
+
 			except ValueError : 
 				self.txt_to_user_lbl.setText(" Your value is not a number  ")
 		else : 
