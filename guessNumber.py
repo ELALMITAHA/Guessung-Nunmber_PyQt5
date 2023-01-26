@@ -1,7 +1,7 @@
 #=================================
 # @author :EL ALMI Taha
 # Date    : 26/12/2021
-#================================== 
+#================================= 
 import sys 
 import random
 from PyQt5.QtWidgets import (QApplication,QWidget,QLabel,QVBoxLayout,QGridLayout,
